@@ -1,0 +1,64 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{{guidAPI}}") = "{name}.API", "{name}.API\{name}.API.csproj", "{{guidAPIc}}"
+EndProject
+Project("{{guidDomain}}") = "{name}.Domain", "{name}.Domain\{name}.Domain.csproj", "{{guidDomainc}}"
+EndProject
+Project("{{guidInfrastructure}}") = "{name}.Infrastructure", "{name}.Infrastructure\{name}.Infrastructure.csproj", "{{guidInfrastructurec}}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{{guidAPIc}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{{guidAPIc}}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{{guidAPIc}}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{{guidAPIc}}.Debug|x64.Build.0 = Debug|Any CPU
+		{{guidAPIc}}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{{guidAPIc}}.Debug|x86.Build.0 = Debug|Any CPU
+		{{guidAPIc}}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{{guidAPIc}}.Release|Any CPU.Build.0 = Release|Any CPU
+		{{guidAPIc}}.Release|x64.ActiveCfg = Release|Any CPU
+		{{guidAPIc}}.Release|x64.Build.0 = Release|Any CPU
+		{{guidAPIc}}.Release|x86.ActiveCfg = Release|Any CPU
+		{{guidAPIc}}.Release|x86.Build.0 = Release|Any CPU
+		{{guidDomainc}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{{guidDomainc}}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{{guidDomainc}}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{{guidDomainc}}.Debug|x64.Build.0 = Debug|Any CPU
+		{{guidDomainc}}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{{guidDomainc}}.Debug|x86.Build.0 = Debug|Any CPU
+		{{guidDomainc}}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{{guidDomainc}}.Release|Any CPU.Build.0 = Release|Any CPU
+		{{guidDomainc}}.Release|x64.ActiveCfg = Release|Any CPU
+		{{guidDomainc}}.Release|x64.Build.0 = Release|Any CPU
+		{{guidDomainc}}.Release|x86.ActiveCfg = Release|Any CPU
+		{{guidDomainc}}.Release|x86.Build.0 = Release|Any CPU
+		{{guidInfrastructurec}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{{guidInfrastructurec}}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{{guidInfrastructurec}}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{{guidInfrastructurec}}.Debug|x64.Build.0 = Debug|Any CPU
+		{{guidInfrastructurec}}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{{guidInfrastructurec}}.Debug|x86.Build.0 = Debug|Any CPU
+		{{guidInfrastructurec}}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{{guidInfrastructurec}}.Release|Any CPU.Build.0 = Release|Any CPU
+		{{guidInfrastructurec}}.Release|x64.ActiveCfg = Release|Any CPU
+		{{guidInfrastructurec}}.Release|x64.Build.0 = Release|Any CPU
+		{{guidInfrastructurec}}.Release|x86.ActiveCfg = Release|Any CPU
+		{{guidInfrastructurec}}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+
+	EndGlobalSection
+EndGlobal

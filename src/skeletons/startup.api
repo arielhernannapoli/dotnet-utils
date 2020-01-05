@@ -1,0 +1,171 @@
+using System;
+using System.Reflection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using {name}.Infrastructure;
+using Microsoft.AspNetCore.Server.IISIntegration;
+using Newtonsoft.Json.Serialization;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
+using Microsoft.Extensions.Hosting;
+using MediatR;
+
+namespace {name}.API
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration Configuration { get; }
+
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<IConfiguration>(Configuration);
+
+            services.AddControllers();
+
+            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+
+            services
+                .AddResponseCompression()
+                .AddCustomSwagger(Configuration)
+                .AddCustomMvc()                
+                .AddHealthChecks(Configuration)
+                .AddCustomDbContext(Configuration)
+                .AddDependencies();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            var pathBase = Configuration["PATH_BASE"];
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
+            app.UseHealthChecks("/liveness", new HealthCheckOptions
+            {
+                Predicate = r => r.Name.Contains("self")
+            });
+
+            app.UseHealthChecks("/hc", new HealthCheckOptions()
+            {
+                Predicate = _ => true,
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
+
+            app.UseResponseCompression();
+            app.UseCors("CorsPolicy");
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint($"{ (!string.IsNullOrEmpty(pathBase) ? pathBase : string.Empty) }/swagger/v1/swagger.json", "{name} API V1");
+                c.OAuthAppName("{name} Swagger UI");
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
+
+    static class CustomExtensionsMethods
+    {
+        public static IServiceCollection AddCustomSwagger(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {                    
+                    Title = "{name} HTTP API",
+                    Version = "v1",
+                    Description = "{name} Service HTTP API",
+                    TermsOfService = new Uri("http://dotnet-utils.com")
+                });
+                options.CustomSchemaIds(c => c.FullName);
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddCustomMvc(this IServiceCollection services)
+        {
+            services.AddMvc()
+                .AddNewtonsoftJson(options =>
+                        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver()
+                )                
+                .AddControllersAsServices();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddHealthChecks(this IServiceCollection services, IConfiguration configuration)
+        {
+            var hcBuilder = services.AddHealthChecks();
+
+            hcBuilder.AddCheck("self", () => HealthCheckResult.Healthy());
+
+            hcBuilder
+                .AddSqlServer(
+                    configuration["ConnectionString"],
+                    name: "{name}DB-check",
+                    tags: new string[] { "{name}db" });
+
+            return services;
+        }
+
+        public static IServiceCollection AddDependencies(this IServiceCollection services)
+        {
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            return services;
+        }
+
+        public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddEntityFrameworkSqlServer()
+                   .AddDbContext<{name}Context>(options =>
+                   {
+                       options.UseSqlServer(configuration["ConnectionString"],
+                        sqlServerOptionsAction: sqlOptions =>
+                        {
+                            sqlOptions.MigrationsAssembly(typeof({name}Context).GetTypeInfo().Assembly.GetName().Name);
+                            sqlOptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+                            sqlOptions.MigrationsHistoryTable("EFMigrations", {name}Context.DEFAULT_SCHEMA);
+                        });
+                   },
+                       ServiceLifetime.Scoped
+                   );
+            return services;
+        }
+
+    }
+}
