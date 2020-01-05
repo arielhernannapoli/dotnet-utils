@@ -11,6 +11,14 @@
     <Version>1.0.1</Version>
     <Authors>Ariel Hernan Napoli</Authors>
     <Company>Ariel Hernan Napoli Dev</Company>    
+    <Language>C#</Language>
+    <Title>DotNet Utils</Title>
+    <PackageDescription>CLI Utils For .NET Core Framework</PackageDescription>
+    <Description>CLI Utils For .NET Core Framework</Description>
+    <ProjectUrl>https://github.com/arielhernannapoli/dotnet-utils</ProjectUrl>
+    <RepositoryUrl>https://github.com/arielhernannapoli/dotnet-utils</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Tags>.NET, CORE</Tags>
   </PropertyGroup>
 
   <ItemGroup>
