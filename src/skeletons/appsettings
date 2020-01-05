@@ -1,0 +1,9 @@
+{
+  "ConnectionString": "Data Source = localhost; Initial Catalog = Test; User ID = test; Password = 123456789; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;",
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
