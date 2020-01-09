@@ -7,6 +7,7 @@ using System;
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
+using {name}.Infrastructure.EntityConfigurations;
 
 namespace {name}.Infrastructure
 {
@@ -18,6 +19,8 @@ namespace {name}.Infrastructure
         public bool HasActiveTransaction => _currentTransaction != null;
         public const string DEFAULT_SCHEMA = "{name}";
 
+        public DbSet<{name}.Domain.Aggregates.{name}.{name}> {name} { get; set; }
+
         public {name}Context(DbContextOptions options, IMediator mediator) : base(options)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
@@ -25,7 +28,7 @@ namespace {name}.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.ApplyConfiguration(new {name}EntityTypeConfiguration());
         }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))

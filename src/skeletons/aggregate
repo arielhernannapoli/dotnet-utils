@@ -1,0 +1,14 @@
+using System;
+using {name}.Domain.Common;
+using System.Collections.Generic;
+
+namespace {name}.Domain.Aggregates.{name}
+{
+    public class {name} : Entity, IAggregateRoot
+    {
+        public {name}()
+        {
+
+        }
+  }
+}
