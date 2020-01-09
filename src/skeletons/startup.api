@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using Microsoft.Extensions.Hosting;
 using MediatR;
+using {name}.Domain.Aggregates.{name};
+using {name}.Infrastructure.Repositories;
 
 namespace {name}.API
 {
@@ -145,6 +147,7 @@ namespace {name}.API
 
         public static IServiceCollection AddDependencies(this IServiceCollection services)
         {
+            services.AddTransient<I{name}Repository, {name}Repository>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             return services;
         }

@@ -6,6 +6,8 @@ namespace dotnet_utils.src.enums
         projectAPI,
         projectDomain,
         projectInfrastructure,
+        projectUnitTesting,
+        projectIntegrationTesting,
         appsettings,
         programAPI,
         startupAPI,
@@ -13,6 +15,13 @@ namespace dotnet_utils.src.enums
         mediatorExtension,
         unitofwork,
         entity,
-        homeController
+        homeController,
+        crudController,
+        aggregate,
+        aggregateRepository,
+        iAggregateRepository,
+        iAggregateRoot,
+        iRepository,
+        entityConfiguration
     }
 }

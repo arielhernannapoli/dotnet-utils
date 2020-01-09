@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using {name}.Domain.Common;
+
+namespace {name}.Domain.Aggregates.{name}
+{
+    public interface I{name}Repository : IRepository<{name}>
+    {
+        {name} Add({name} {name});
+        void Update({name} {name});
+        void Insert({name} {name});
+        void Delete(int id);
+        Task<List<{name}>> GetAll();
+		Task<{name}> GetByID(int Id); 
+    }
+}

@@ -1,0 +1,62 @@
+using Microsoft.EntityFrameworkCore;
+using {name}.Domain.Aggregates.{name};
+using {name}.Domain.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace {name}.Infrastructure.Repositories
+{
+    public class {name}Repository : I{name}Repository
+    {
+        private readonly {name}Context _context;
+        public IUnitOfWork UnitOfWork
+        {
+            get
+            {
+                return _context;
+            }
+        }
+        public {name}Repository({name}Context context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        public Domain.Aggregates.{name}.{name} Add(Domain.Aggregates.{name}.{name} {name})
+        {
+            _context.{name}.Add({name});
+            _context.SaveChanges();
+            return {name};
+        }
+
+        public void Update(Domain.Aggregates.{name}.{name} {name})
+        {
+            _context.{name}.Update({name});
+            _context.SaveChanges();
+        }
+
+        public void Insert(Domain.Aggregates.{name}.{name} {name})
+        {
+            _context.{name}.Add({name});
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            _context.{name}.Remove(_context.{name}.FirstOrDefault(p => p.Id == id));
+            _context.SaveChanges();
+        }
+
+        public Task<List<Domain.Aggregates.{name}.{name}>> GetAll()
+        {
+            return _context.{name}.ToListAsync();
+        }
+
+        public Task<Domain.Aggregates.{name}.{name}> GetByID(int Id)
+        {
+            return _context.{name}.FirstOrDefaultAsync(p => p.Id == Id);
+        }
+    }
+}

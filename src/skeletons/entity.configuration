@@ -1,0 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using a = {name}.Domain.Aggregates.{name};
+
+namespace {name}.Infrastructure.EntityConfigurations
+{
+    class {name}EntityTypeConfiguration : IEntityTypeConfiguration<a.{name}>
+    {
+        public void Configure(EntityTypeBuilder<a.{name}> {name})
+        {
+            {name}.ToTable("{name}", {name}Context.DEFAULT_SCHEMA);
+            {name}.HasKey("Id");
+        }
+    }
+}

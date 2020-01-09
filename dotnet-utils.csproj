@@ -8,7 +8,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-utils</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
     <Authors>Ariel Hernan Napoli</Authors>
     <Company>Ariel Hernan Napoli Dev</Company>    
     <Language>C#</Language>
@@ -32,6 +32,8 @@
     <EmbeddedResource Include="src/skeletons/project.api" />
     <EmbeddedResource Include="src/skeletons/project.domain" />
     <EmbeddedResource Include="src/skeletons/project.infrastructure" />
+    <EmbeddedResource Include="src/skeletons/project.unit.testing" />
+    <EmbeddedResource Include="src/skeletons/project.integration.testing" />
     <EmbeddedResource Include="src/skeletons/appsettings" />
     <EmbeddedResource Include="src/skeletons/program.api" />
     <EmbeddedResource Include="src/skeletons/startup.api" />
@@ -40,6 +42,13 @@
     <EmbeddedResource Include="src/skeletons/unitofwork" />
     <EmbeddedResource Include="src/skeletons/entity" />
     <EmbeddedResource Include="src/skeletons/home.controller" />
+    <EmbeddedResource Include="src/skeletons/crud.controller" />
+    <EmbeddedResource Include="src/skeletons/aggregate" />
+    <EmbeddedResource Include="src/skeletons/aggregate.repository" />
+    <EmbeddedResource Include="src/skeletons/i.aggregate.repository" />
+    <EmbeddedResource Include="src/skeletons/i.aggregate.root" />
+    <EmbeddedResource Include="src/skeletons/i.repository" />
+    <EmbeddedResource Include="src/skeletons/entity.configuration" />
   </ItemGroup>
 
 </Project>

@@ -50,6 +50,33 @@ namespace dotnet_utils.src.parsers
                 case skeletontypes.homeController:
                     skeletonContent = ParseContent("dotnet_utils.src.skeletons.home.controller", parameters);
                     break;                                                                                                                                                                                    
+                case skeletontypes.projectUnitTesting:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.project.unit.testing", parameters);
+                    break;                                                                                                                                                                                                        
+                case skeletontypes.projectIntegrationTesting:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.project.integration.testing", parameters);
+                    break;                                                                                                                                                                                                                            
+                case skeletontypes.crudController:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.crud.controller", parameters);
+                    break;
+                case skeletontypes.aggregate:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.aggregate", parameters);
+                    break;                    
+                case skeletontypes.iAggregateRepository:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.i.aggregate.repository", parameters);
+                    break;                                        
+                case skeletontypes.aggregateRepository:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.aggregate.repository", parameters);
+                    break;                                                            
+                case skeletontypes.iAggregateRoot:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.i.aggregate.root", parameters);
+                    break;                                        
+                case skeletontypes.iRepository:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.i.repository", parameters);
+                    break;                                                            
+                case skeletontypes.entityConfiguration:
+                    skeletonContent = ParseContent("dotnet_utils.src.skeletons.entity.configuration", parameters);
+                    break;                                                                                
             };
 
             return skeletonContent;

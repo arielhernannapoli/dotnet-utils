@@ -1,0 +1,57 @@
+using System.Linq;
+using System.Threading.Tasks;
+using {name}.Domain.Aggregates.{name};
+using a = {name}.Domain.Aggregates.{name};
+using Microsoft.AspNetCore.Mvc;
+
+namespace {name}.API.Controllers
+{
+    [Route("api/v1/[controller]")]
+    [ApiController]
+    public class {name}Controller : ControllerBase
+    {
+        private readonly I{name}Repository _{name}Repository;
+
+        public {name}Controller(I{name}Repository {name}Repository)
+        {
+            _{name}Repository = {name}Repository;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var items = await _{name}Repository.GetAll();
+            return Ok(items.ToList());
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var item = await _{name}Repository.GetByID(id);
+            return Ok(item);
+        }
+
+        [HttpPost]
+        public ActionResult Post(a.{name} {name})
+        {
+            _{name}Repository.Insert({name});
+            return Ok();
+        }
+
+        [HttpPut]
+        public ActionResult Put(a.{name} {name})
+        {
+            _{name}Repository.Update({name});
+            return Ok();
+        }
+
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            _{name}Repository.Delete(id);
+            return Ok();
+        }
+
+    }
+}
