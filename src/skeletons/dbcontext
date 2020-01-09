@@ -92,7 +92,7 @@ namespace {name}.Infrastructure
         public {name}Context CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<{name}Context>()
-            .UseSqlServer("Data Source = localhost; Initial Catalog = Test; User ID = test; Password = 123456789; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;");
+            .UseSqlServer("Data Source = localhost; Initial Catalog = Test; Integrated Security=True");
             return new {name}Context(optionsBuilder.Options, new NoMediator());
         }
     }

@@ -13,6 +13,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0"/>
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0"/>
     <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>    
     <PackageReference Include="Polly" Version="7.1.0.0" />
     <PackageReference Include="SwashBuckle.AspNetCore" Version="5.0.0-rc5" />
   </ItemGroup>

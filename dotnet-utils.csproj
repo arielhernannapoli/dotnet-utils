@@ -8,7 +8,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-utils</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>Ariel Hernan Napoli</Authors>
     <Company>Ariel Hernan Napoli Dev</Company>    
     <Language>C#</Language>
